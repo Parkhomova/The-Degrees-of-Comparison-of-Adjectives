@@ -17,10 +17,8 @@ services:
           name: arena-db
           property: connectionString
 
-  - type: database
-    name: arena-db
-    databaseName: app_db
+databases:
+  - name: arena-db
     plan: free
     region: frankfurt
-    user: arena
     postgresMajorVersion: "16"
