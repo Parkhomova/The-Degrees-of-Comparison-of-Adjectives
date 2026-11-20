@@ -1,0 +1,24 @@
+# зависимости
+node_modules/
+
+# сборка
+.next/
+out/
+build/
+
+# окружение
+.env
+.env.local
+.env*.local
+
+# логи
+*.log
+npm-debug.log*
+
+# архив для загрузки на GitHub
+comparative-arena.zip
+
+# служебное
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts.bak
