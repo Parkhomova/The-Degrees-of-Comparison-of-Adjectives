@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: free
     region: frankfurt
-    buildCommand: npm install --no-audit --no-fund && npm run build
+    buildCommand: npm ci && npm run build
     startCommand: npm run start
     healthCheckPath: /api/health
     envVars:
@@ -17,8 +17,10 @@ services:
           name: arena-db
           property: connectionString
 
-databases:
-  - name: arena-db
+  - type: database
+    name: arena-db
+    databaseName: app_db
     plan: free
     region: frankfurt
+    user: arena
     postgresMajorVersion: "16"

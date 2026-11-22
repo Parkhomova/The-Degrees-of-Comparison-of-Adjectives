@@ -1,15 +1,15 @@
-# Сборка и запуск приложения (используется Render, если в корне есть Dockerfile).
+# Одностадийный образ: оставляет drizzle-kit, чтобы схема применялась при старте.
 FROM node:22-bookworm-slim
 
 WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED=1 \
     PORT=3000 \
-    HOSTNAME=0.0.0.0
+    HOSTNAME=0.0.0.0 \
+    DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5432/app_db
 
-# package*.json — захватывает и package.json, и package-lock.json, если он есть.
-COPY package*.json ./
-RUN npm install --no-audit --no-fund
+COPY package.json package-lock.json ./
+RUN npm ci
 
 COPY . .
 RUN npm run build
